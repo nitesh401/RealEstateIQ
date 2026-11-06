@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body { @apply bg-ink-900 text-slate-100 font-sans antialiased; margin: 0; overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .14; z-index: 0;
+  background-image: linear-gradient(rgba(140,170,210,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(140,170,210,.09) 1px, transparent 1px);
+  background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+#root { position: relative; z-index: 1; }
+:focus-visible { outline: 2px solid #e8bd75; outline-offset: 2px; border-radius: 6px; }
+
+.glass { background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: 18px; }
+.eyebrow { @apply font-mono text-[11px] tracking-[.2em] uppercase text-gold-400; }
+.label { @apply block text-[12px] font-medium text-slate-300 mb-1.5; }
+.input { @apply w-full rounded-xl bg-ink-950/70 border border-ink-600 px-3.5 py-2.5 text-[14px] text-slate-100 placeholder:text-slate-500 transition-colors; min-height: 44px; }
+.input:hover { border-color: #3a4c68; }
+.input:focus { outline: none; border-color: #e8bd75; box-shadow: 0 0 0 3px rgba(232,189,117,.15); }
+.input[aria-invalid='true'] { border-color: #ef9b85; }
+select.input { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%2391a0b5' stroke-width='1.6'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition-all duration-200; min-height: 44px; }
+.btn-primary { @apply bg-gold-400 text-ink-950; box-shadow: 0 8px 30px -10px rgba(232,189,117,.6); }
+.btn-primary:hover:not(:disabled) { @apply bg-gold-500; transform: translateY(-1px); }
+.btn-ghost { @apply border border-ink-600 text-slate-200 bg-white/[.03]; }
+.btn-ghost:hover:not(:disabled) { border-color: #e8bd75; color: #e8bd75; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide; }
+.skeleton { background: linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.1), rgba(255,255,255,.04)); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 10px; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .9s linear infinite; }
+
+/* 3D property visual */
+.scene { perspective: 900px; width: 260px; height: 260px; margin: auto; }
+.cube { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; animation: rot 22s linear infinite; transform: rotateX(-24deg) rotateY(30deg); }
+@keyframes rot { to { transform: rotateX(-24deg) rotateY(390deg); } }
+.plot { position: absolute; left: 50%; top: 50%; width: 220px; height: 220px; margin: -110px; transform: rotateX(90deg) translateZ(-70px); background: radial-gradient(circle at 50% 50%, rgba(115,215,208,.18), rgba(232,189,117,.06)); border: 1px dashed rgba(232,189,117,.6); }
+.bx { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; }
+.face { position: absolute; border: 1px solid rgba(232,189,117,.55); background: linear-gradient(160deg, rgba(232,189,117,.18), rgba(115,215,208,.08)); backdrop-filter: blur(2px); }
+@media (prefers-reduced-motion: reduce) { .cube { animation: none; } .skeleton, .spin { animation: none; } html { scroll-behavior: auto; } * { transition: none !important; } }
+
+/* leaflet tweaks */
+.leaflet-container { background: #0e1626; font-family: inherit; border-radius: 14px; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #10182a; color: #edf2f8; border: 1px solid #26344a; }
+.eiq-pin { width: 26px; height: 26px; border-radius: 50% 50% 50% 0; background: #e8bd75; transform: rotate(-45deg); border: 2px solid #0b1020; box-shadow: 0 4px 12px rgba(0,0,0,.5); }
+.eiq-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #0b1020; box-shadow: 0 0 0 1px rgba(255,255,255,.3); }
+.leaflet-control-attribution { background: rgba(11,16,32,.8) !important; color: #91a0b5 !important; }
+.leaflet-control-attribution a { color: #e8bd75 !important; }
