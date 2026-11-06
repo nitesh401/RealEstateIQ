@@ -18,7 +18,7 @@ npm run test:e2e     # needs: npm run build, python3 + playwright (pip install p
 ## Deploy to GitHub Pages
 1. Push the project to the `main` branch.
 2. In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
-3. Each push to `main` runs `.github/workflows/deploy.yml`, which type-checks, lints, runs the unit tests, builds the app and publishes `dist/`.
+3. If the first workflow run started before Pages was enabled, re-run it from the **Actions** tab. Later pushes to `main` run `.github/workflows/deploy.yml` automatically; it type-checks, lints, runs the unit tests, builds the app and publishes `dist/`.
 4. When the workflow succeeds, the site is available at [https://nitesh401.github.io/RealEstateIQ/](https://nitesh401.github.io/RealEstateIQ/).
 
 The build uses `base: './'` and hash routing (`#/analyze`, `#/report/<id>`), so it works under the repository sub-path with no extra configuration or 404 fallback. This was exercised by the e2e suite, which serves the build under `/estateiq-repo/`.
